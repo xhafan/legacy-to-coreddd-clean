@@ -21,7 +21,7 @@ namespace LegacyWebFormsApp.WebFormsAdoNet
             {
                 connection.Open();
 
-                cmd.CommandText = "SELECT ShipId, ShipName, Tonnage, ImoNumber, HasImoNumberBeenVerified, IsImoNumberValid FROM Ship";
+                cmd.CommandText = "SELECT ShipId, ShipName, Tonnage, ImoNumber FROM Ship";
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -30,12 +30,9 @@ namespace LegacyWebFormsApp.WebFormsAdoNet
                         var shipName = reader.GetString(1);
                         var tonnage = reader.GetDecimal(2);
                         var imoNumber = reader.GetString(3);
-                        var hasImoNumberBeenVerified = reader.GetBoolean(4);
-                        var isImoNumberValid = reader.GetBoolean(5);
 
                         ExistingShipsListBox.Items.Add(
-                            $"Id: {shipId}, Name: {shipName}, Tonnage: {tonnage}, IMO number: {imoNumber}, " +
-                            $"IMO number is verified: {hasImoNumberBeenVerified}, IMO number is valid: {isImoNumberValid}");
+                            $"Id: {shipId}, Name: {shipName}, Tonnage: {tonnage}, IMO number: {imoNumber}");
                     }
                 }
             }
